@@ -1,20 +1,33 @@
 <div class="app-recharge-details">
   <label for="discount">Promotion:</label>
-  <select id="discount">
-    <option>Mobile Store Recharge 9.95% Discount</option>
+  <select id="discount" [(ngModel)]="selectedPromotionId" (change)="onPromotionChange()">
+    <option value="">No Promotion</option>
+    <option *ngFor="let promo of promotions" [value]="promo.id">
+      {{ promo.name }}
+    </option>
   </select>
-  <span class="discount-tag">Discount - Mobile Store Recharge 9.95% Discount</span>
-
-  <label>Recharge Amount(RMB):</label>
-  <div class="amount-options">
-    <button type="button" class="amount-btn">30</button>
-    <button type="button" class="amount-btn">50</button>
-    <button type="button" class="amount-btn active">100</button>
-    <button type="button" class="amount-btn">300</button>
-    <button type="button" class="amount-btn">500</button>
-    <input type="text" size="10" class="amount-input" placeholder="10~3000" />
+  <span *ngIf="selectedPromotion" class="discount-tag" display=flex>
+          Discount - {{ selectedPromotion.name }}
+  </span>
+  <div class="recharge-amount-section">
+    <label>Recharge Amount(RMB):</label>
+    <div class="amount-options">
+      <button *ngFor="let amount of predefinedAmounts"
+              type="button"
+              class="amount-btn"
+              [class.active]="selectedAmount === amount"
+              (click)="selectAmount(amount)">
+        {{ amount }}
+      </button>
+      <input type="text"
+             size="10"
+             class="amount-input"
+             placeholder="10~3000"
+             [(ngModel)]="customAmount"
+             (ngModelChange)="onCustomAmountChange()"
+             (blur)="validateCustomAmount()"/>
+    </div>
   </div>
-
   <div class="amount-summary">
     <p>Payment Amount: <span class="payment-amount">99.50 RMB</span></p>
     <p>Amount Received: <span class="received-amount">100.00 RMB</span></p>

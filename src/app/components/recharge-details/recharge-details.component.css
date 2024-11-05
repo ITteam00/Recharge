@@ -45,3 +45,9 @@
   font-weight: bold;
   color: #e74c3c;
 }
+
+.recharge-amount-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
