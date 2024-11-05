@@ -38,6 +38,7 @@ export class RechargeDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.selectAmount(100); // 默认选中 100
+    this.calculatePaymentAmount();
   }
 
   onPromotionChange() {
