@@ -24,8 +24,9 @@ export class MoneyCalculateComponent {
     this.updateAmounts();
   }
 
-  updateCustomAmount(value: string) {
-    const amount = parseFloat(value);
+  updateCustomAmount(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const amount = parseFloat(inputElement.value);
     if (!isNaN(amount) && amount >= 10 && amount <= 3000) {
       this.selectedAmount = amount;
       this.updateAmounts();
@@ -35,5 +36,8 @@ export class MoneyCalculateComponent {
   updateAmounts() {
     this.paymentAmount = this.selectedAmount * (1 - this.discountRate / 100);
     this.receivedAmount = this.selectedAmount;
+  }
+  isActive(amount: number): boolean {
+    return this.selectedAmount === amount;
   }
 }

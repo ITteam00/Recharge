@@ -11,15 +11,15 @@
 
 <label>Recharge Amount(RMB):</label>
 <div class="amount-options">
-    <button type="button" class="amount-btn">30</button>
-    <button type="button" class="amount-btn">50</button>
-    <button type="button" class="amount-btn active">100</button>
-    <button type="button" class="amount-btn">300</button>
-    <button type="button" class="amount-btn">500</button>
-    <input type="text" size="10" class="amount-input" placeholder="10~3000" />
+    <button type="button" class="amount-btn" [class.active]="isActive(30)" (click)="selectAmount(30)">30</button>
+    <button type="button" class="amount-btn" [class.active]="isActive(50)" (click)="selectAmount(50)">50</button>
+    <button type="button" class="amount-btn" [class.active]="isActive(100)" (click)="selectAmount(100)">100</button>
+    <button type="button" class="amount-btn" [class.active]="isActive(300)" (click)="selectAmount(300)">300</button>
+    <button type="button" class="amount-btn" [class.active]="isActive(500)" (click)="selectAmount(500)">500</button>
+    <input type="text" size="10" class="amount-input" placeholder="10~3000" (input)="updateCustomAmount($event)" />
 </div>
 
 <div class="amount-summary">
-    <p>Payment Amount: <span class="payment-amount">99.50 RMB</span></p>
-    <p>Amount Received: <span class="received-amount">100.00 RMB</span></p>
-</div>
+    <p>Payment Amount: <span class="payment-amount">{{ paymentAmount.toFixed(2) }} RMB</span></p>
+    <p>Amount Received: <span class="received-amount">{{ receivedAmount.toFixed(2) }} RMB</span></p>
+  </div>
