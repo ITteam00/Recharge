@@ -123,9 +123,26 @@ body {
     cursor: pointer;
 }
 
+.submit-btn.valid {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .submit-btn.invalid {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+
 .note {
     font-size: 12px;
     color: #27ae60;
     text-align: center;
     margin-top: 10px;
+}
+
+.alert{
+    color: red;
+    font-size: small;
+    text-indent: 2em;
 }

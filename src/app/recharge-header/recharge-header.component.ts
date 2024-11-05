@@ -29,7 +29,7 @@ export class RechargeHeaderComponent implements OnInit{
  
   updateActiveStep(url: string) {
     const cleanUrl = url.split('?')[0]; 
-    if (cleanUrl === '/') {
+    if (cleanUrl === '/recharge') {
       this.activeStep = 1;
     } else if (cleanUrl.startsWith('/confirm-pay')) {
       this.activeStep = 2;

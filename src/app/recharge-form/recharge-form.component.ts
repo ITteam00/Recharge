@@ -1,40 +1,97 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PhoneInputComponent } from "../phone-input/phone-input.component";
-import { MoneyCaculaterComponent } from "../money-caculater/money-caculater.component";
-import { RechargeButtonComponent } from "../recharge-button/recharge-button.component";
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-recharge-form',
   standalone: true,
-  imports: [PhoneInputComponent, MoneyCaculaterComponent, RechargeButtonComponent],
+  imports: [PhoneInputComponent, ReactiveFormsModule,CommonModule,FormsModule],
   templateUrl: './recharge-form.component.html',
   styleUrl: './recharge-form.component.css'
 })
 export class RechargeFormComponent {
-  constructor(private router: Router){}
+  phoneForm: FormGroup
+  constructor(private router: Router,private fb: FormBuilder){
+    this.phoneForm = this.fb.group({
+      phone: ['', [Validators.required, Validators.pattern('^1[0-9]{10}$')]]
+    });
+  }
+  
   phoneNumber:string=""
   payment:number=0
   amount:number=0
-
-  onPhoneNumberChange(phone:string){
-    this.phoneNumber = phone;
-  }
-
-  onPaymentChange(payment:string){
-    this.payment = Number(payment);
-  }
-
-  onAmountChange(amount:string){
-    this.amount = Number(amount);
-  }
-
   navigateConfirmAndPay(){
     this.router.navigate(['/confirm-pay'],{queryParams: {
-      phone:this.phoneNumber,
-      amount: this.amount,
-      paymentAmount: this.payment}
+      amount: this.amountReceived,
+      paymentAmount: this.paymentAmount}
     })
+  }
+
+
+  onSubmit() {
+    if (this.phoneForm.valid) {
+      console.log(this.phoneForm.value);
+    }
+  }
+
+  get phone() {
+    return this.phoneForm.get('phone');
+  }  
+
+
+
+  selectedType = "None";
+  discount: number = 0
+  paymentAmount: number | null = null
+  amountReceived: number | null = null
+  inputValue: number | null = null
+
+
+
+  public updateDiscount() {
+    if (this.selectedType === "Discount - Mobile Store Recharge 9.0% Discount") {
+      this.discount = 0.09
+    }
+    if (this.selectedType === "Discount - Mobile Store Recharge 8.0% Discount") {
+      this.discount = 0.08
+    }
+    if (this.selectedType === "None") {
+      this.discount = 0
+    }
+  }
+
+
+  onDiscountChange() {
+    this.updateDiscount();
+    this.calculateAmount();
+  }
+
+  setAmount(amount: number) {
+    this.amountReceived = amount;
+    this.calculateAmount()
+  }
+
+  calculateAmount() {
+    this.paymentAmount = (this.amountReceived as number) * (1 - this.discount);
+  }
+
+
+  checkValue() {
+    if (this.inputValue === null || this.inputValue === undefined) {
+      this.inputValue = null;
+    }
+    else {
+      this.amountReceived = this.inputValue
+      this.calculateAmount()
+    }
+  }
+
+  clearValue() {
+    if (this.inputValue === null) {
+      this.inputValue = null;
+    }
   }
 }
