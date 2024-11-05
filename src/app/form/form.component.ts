@@ -55,7 +55,6 @@ export class FormComponent implements AfterViewInit {
   }
 
   startRecharge() {
-    console.log("route!~")
     // 这里可以添加任何需要的逻辑，例如验证或处理数据
     this.router.navigate(['/confirm-pay'], {
       queryParams: {
