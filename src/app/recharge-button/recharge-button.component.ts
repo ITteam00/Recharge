@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ValidationService } from '../validation.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-recharge-button',
@@ -8,5 +10,14 @@ import { Component } from '@angular/core';
   styleUrl: './recharge-button.component.css'
 })
 export class RechargeButtonComponent {
+  isFormValid: boolean = true;
 
+  constructor(private validationService: ValidationService) {
+    combineLatest([
+      this.validationService.phoneValid$,
+      this.validationService.amountValid$
+    ]).subscribe(([isPhoneValid, isAmountValid]) => {
+      this.isFormValid = isPhoneValid && isAmountValid;
+    });
+  }
 }

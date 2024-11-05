@@ -1,5 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { ValidationService } from '../validation.service';
 
 @Component({
   selector: 'app-money-calculate',
@@ -14,6 +15,8 @@ export class MoneyCalculateComponent {
   paymentAmount: number = 100;
   receivedAmount: number = 100;
   isValid: boolean = true;
+
+  constructor(private validationService: ValidationService) {}
 
   updateDiscount(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
@@ -32,14 +35,12 @@ export class MoneyCalculateComponent {
     if (inputElement.value === '') {
       this.selectedAmount = 0;
       this.updateAmounts();
-      this.isValid = true;
     } else if (!isNaN(amount) && amount >= 10 && amount <= 3000) {
       this.selectedAmount = amount;
-      this.isValid = true;
       this.updateAmounts();
-    } else {
-      this.isValid = false;
-    }
+    } 
+    this.validateAmount();
+
   }
 
   updateAmounts() {
@@ -48,5 +49,10 @@ export class MoneyCalculateComponent {
   }
   isActive(amount: number): boolean {
     return this.selectedAmount === amount;
+  }
+
+  validateAmount() {
+    const isValid = this.selectedAmount >= 10 && this.selectedAmount <= 3000;
+    this.validationService.setAmountValid(isValid);
   }
 }
