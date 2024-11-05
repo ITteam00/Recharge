@@ -29,7 +29,7 @@
     </div>
   </div>
   <div class="amount-summary">
-    <p>Payment Amount: <span class="payment-amount">99.50 RMB</span></p>
-    <p>Amount Received: <span class="received-amount">100.00 RMB</span></p>
+    <p>Payment Amount: <span class="payment-amount">{{ paymentAmount.toFixed(2) }} RMB</span></p>
+    <p>Amount Received: <span class="received-amount">{{ selectedAmount?.toFixed(2) || '0.00' }} RMB</span></p>
   </div>
 </div>
