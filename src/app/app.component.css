@@ -72,7 +72,8 @@ body {
 }
 
 .discount-tag {
-    display: inline-block;
+    /* display: inline-block; */
+    display: none;
     background-color: #ff4c4c;
     color: #fff;
     padding: 3px 10px;
