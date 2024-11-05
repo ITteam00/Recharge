@@ -17,6 +17,8 @@
     <button type="button" class="amount-btn" [class.active]="isActive(300)" (click)="selectAmount(300)">300</button>
     <button type="button" class="amount-btn" [class.active]="isActive(500)" (click)="selectAmount(500)">500</button>
     <input type="text" size="10" class="amount-input" placeholder="10~3000" (input)="updateCustomAmount($event)" />
+    <div *ngIf ="!isValid" style="color: red;">!!!</div>
+
 </div>
 
 <div class="amount-summary">
