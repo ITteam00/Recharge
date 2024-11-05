@@ -32,7 +32,6 @@ export class HeadersComponent implements OnInit{
 
   updateActiveStep(url: string) {
     const cleanUrl = url.split('?')[0]; 
-    console.log('Clean URL:', cleanUrl); 
     if (cleanUrl === '/') {
       this.activeStep = 1;
     } else if (cleanUrl.startsWith('/confirm-pay')) {

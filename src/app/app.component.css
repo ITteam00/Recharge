@@ -130,3 +130,12 @@ body {
     text-align: center;
     margin-top: 10px;
 }
+
+.invalid-phone {
+    border: 2px solid red !important;
+}
+
+.submit-btn.disabled-button {
+    background-color: grey !important;
+    cursor: not-allowed;
+}
