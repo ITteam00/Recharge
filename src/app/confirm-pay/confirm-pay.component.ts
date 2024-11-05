@@ -17,7 +17,6 @@ export class ConfirmPayComponent implements OnInit{
  
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.phoneNumber=params['phone']
       this.amount = params['amount'];
       this.payment = params['paymentAmount'];
     });
