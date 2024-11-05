@@ -16,3 +16,8 @@
   color: #3498db;
   font-size: 14px;
 }
+
+.location.invalid {
+  color: red;
+  font-size: 12px;
+}

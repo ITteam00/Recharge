@@ -1,7 +1,10 @@
 <div class="app-phone-num-input">
   <label for="phone">Phone Number:</label>
   <div class="phone-input">
-    <input type="text" id="phone" placeholder="136xxxxxxxxx" />
-    <span class="location">Beijing</span>
+    <input type="number" id="phone" [(ngModel)]="phoneNumber" placeholder="+86 Your Phone Number"
+           (input)="validatePhoneNumber()"/>
+    <span class="location" [ngClass]="{'invalid': !isValidPhoneNumber}">
+        {{ isValidPhoneNumber ? location : '❗ Invalid Phone Number' }}
+    </span>
   </div>
 </div>
