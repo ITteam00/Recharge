@@ -1,8 +1,13 @@
 <label for="discount">Promotion:</label>
-<select id="discount">
-    <option>Mobile Store Recharge 9.95% Discount</option>
+<select id="discount" (change)="updateDiscount($event)">
+    <option value="0">No Discount</option>
+    <option value="9.95">Mobile Store Recharge 9.95% Discount</option>
 </select>
-<span class="discount-tag">Discount - Mobile Store Recharge 9.95% Discount</span>
+
+<span class="discount-tag">Discount - 
+    <span id="discount-description">{{ discountRate === 0 ? 'No Discount' : 'Mobile Store Recharge 9.95% Discount' }}
+    </span>
+</span>
 
 <label>Recharge Amount(RMB):</label>
 <div class="amount-options">
