@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RechargeHeadersComponent } from "./recharge-headers/recharge-headers.component";
 import { RechargeFormComponent } from "./recharge-form/recharge-form.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { RechargeFormComponent } from "./recharge-form/recharge-form.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
   title = 'Recharge';
 }
