@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Output,EventEmitter } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-money-caculater',
@@ -9,6 +9,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './money-caculater.component.css'
 })
 export class MoneyCaculaterComponent {
+  @Output() paymentChange = new EventEmitter<number>();
+  @Output() amountChange = new EventEmitter<number>();
+
+
   promotionTypes = [
     "None",
     "Discount - Mobile Store Recharge 9.95% Discount",

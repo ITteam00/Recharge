@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class PhoneInputComponent {
   phoneForm: FormGroup;
+  @Output() phoneNumberChange = new EventEmitter<string>();
+
+
 
   constructor(private fb: FormBuilder) {
     this.phoneForm = this.fb.group({
@@ -21,6 +24,7 @@ export class PhoneInputComponent {
   onSubmit() {
     if (this.phoneForm.valid) {
       console.log(this.phoneForm.value);
+      this.phoneNumberChange.emit(this.phoneForm.value)
     }
   }
 

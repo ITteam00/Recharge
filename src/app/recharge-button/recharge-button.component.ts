@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, QueryList } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recharge-button',
@@ -8,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './recharge-button.component.css'
 })
 export class RechargeButtonComponent {
-
+  constructor(private router: Router) {}
+  navigateConfirmAndPay(){
+    this.router.navigate(['/confirm-pay'])
+  }
 }
