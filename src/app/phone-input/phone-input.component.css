@@ -129,3 +129,12 @@ body {
     text-align: center;
     margin-top: 10px;
 }
+
+.is-invalid {
+    border-color: red;
+  }
+.alert{
+    color: red;
+    font-size: small;
+    text-indent: 2em;
+}

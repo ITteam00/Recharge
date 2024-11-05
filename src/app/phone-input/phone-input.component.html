@@ -1,5 +1,15 @@
-<label for="phone">Phone Number:</label>
-<div class="phone-input">
-    <input type="text" id="phone" placeholder="136xxxxxxxxx" />
-    <span class="location">Beijing</span>
-</div>
+<form [formGroup]="phoneForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="phone"
+        formControlName="phone"
+        [class.is-invalid]="phone?.invalid && (phone?.dirty || phone?.touched)">
+      <div class="invalid-feedback" *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+        <div class="alert" *ngIf="phone?.errors?.['required']">*Phone number is required.</div>
+        <div class="alert" *ngIf="phone?.errors?.['pattern']">*Phone number must be 11 digits and start with 1.</div>
+      </div>
+    </div>
+  </form>

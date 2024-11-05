@@ -1,10 +1,14 @@
 <label for="discount">Promotion:</label>
-<select id="discount">
-    <option>Mobile Store Recharge 9.95% Discount</option>
+<select id="discount" [(ngModel)]="selectedType">
+    <option>None</option>
+    <option>Discount - Mobile Store Recharge 9.95% Discount</option>
+    <option>Discount - Mobile Store Recharge 8.0% Discount</option>
 </select>
-<span class="discount-tag">Discount - Mobile Store Recharge 9.95% Discount</span>
+<span class="discount-tag">{{selectedType}}</span>
 
-<label>Recharge Amount(RMB):</label>
+<div>
+    <label>Recharge Amount(RMB):</label>
+</div>
 <div class="amount-options">
     <button type="button" class="amount-btn">30</button>
     <button type="button" class="amount-btn">50</button>
