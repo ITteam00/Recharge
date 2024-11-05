@@ -1,7 +1,7 @@
 <label for="discount">Promotion:</label>
-<select id="discount" [(ngModel)]="selectedType">
+<select id="discount" [(ngModel)]="selectedType" (change)="onDiscountChange()">
     <option>None</option>
-    <option>Discount - Mobile Store Recharge 9.95% Discount</option>
+    <option>Discount - Mobile Store Recharge 9.0% Discount</option>
     <option>Discount - Mobile Store Recharge 8.0% Discount</option>
 </select>
 <span class="discount-tag">{{selectedType}}</span>
@@ -10,15 +10,15 @@
     <label>Recharge Amount(RMB):</label>
 </div>
 <div class="amount-options">
-    <button type="button" class="amount-btn">30</button>
-    <button type="button" class="amount-btn">50</button>
-    <button type="button" class="amount-btn active">100</button>
-    <button type="button" class="amount-btn">300</button>
-    <button type="button" class="amount-btn">500</button>
-    <input type="text" size="10" class="amount-input" placeholder="10~3000" />
+    <button type="button" class="amount-btn" (click)="setAmount(30)" >30</button>
+    <button type="button" class="amount-btn" (click)="setAmount(50)">50</button>
+    <button type="button" class="amount-btn" (click)="setAmount(100)">100</button>
+    <button type="button" class="amount-btn" (click)="setAmount(300)">300</button>
+    <button type="button" class="amount-btn" (click)="setAmount(500)">500</button>
+    <input type="text" size="10" class="amount-input" placeholder="10-3000" [(ngModel)]="inputValue" (focus)="clearValue()" (blur)="checkValue()"/>
 </div>
 
 <div class="amount-summary">
-    <p>Payment Amount: <span class="payment-amount">99.50 RMB</span></p>
-    <p>Amount Received: <span class="received-amount">100.00 RMB</span></p>
+    <p>Payment Amount: <span class="payment-amount">{{paymentAmount}}</span></p>
+    <p>Amount Received: <span class="received-amount">{{amountReceived}}</span></p>
 </div>
