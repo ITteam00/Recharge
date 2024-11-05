@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recharge Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recharge Page</title>
 </head>
 <body>
-    <div class="container">
-        <div class="steps">
-            <span class="step active">1. Enter Number and Amount</span>
-            <span class="step">2. Confirm and Pay</span>
-            <span class="step">3. Complete</span>
-        </div>
+<div class="container">
+  <div class="steps">
+    <span class="step active">1. Enter Number and Amount</span>
+    <span class="step">2. Confirm and Pay</span>
+    <span class="step">3. Complete</span>
+  </div>
 
-        <form class="recharge-form">
-            <label for="phone">Phone Number:</label>
-            <div class="phone-input">
-                <input type="text" id="phone" placeholder="136xxxxxxxxx" />
-                <span class="location">Beijing</span>
-            </div>
-            <app-recharge-details></app-recharge-details>
-            <app-submit-button></app-submit-button>
-        </form>
-    </div>
+  <form class="recharge-form">
+    <app-phone-num-input></app-phone-num-input>
+    <app-recharge-details></app-recharge-details>
+    <app-submit-button></app-submit-button>
+  </form>
+</div>
 </body>
 </html>
