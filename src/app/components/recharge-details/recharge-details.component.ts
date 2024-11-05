@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import {RechargeDataService} from "../../Services/RechargeDataService";
 
 interface Promotion {
   id: string;
@@ -35,6 +36,7 @@ export class RechargeDetailsComponent implements OnInit {
 
   selectedPromotionId: string = '';
   selectedPromotion: Promotion | null = null;
+  constructor(private rechargeDataService: RechargeDataService) {}
 
   ngOnInit() {
     this.selectAmount(100); // 默认选中 100
@@ -44,12 +46,14 @@ export class RechargeDetailsComponent implements OnInit {
   onPromotionChange() {
     this.selectedPromotion = this.promotions.find(p => p.id === this.selectedPromotionId) || null;
     this.calculatePaymentAmount();
+    this.updateServiceData();
   }
 
   onAmountChange(amount: number) {
     this.selectedAmount = amount;
     this.amountChange.emit(amount);
     this.calculatePaymentAmount();
+    this.updateServiceData();
   }
 
   selectAmount(amount: number) {
@@ -57,6 +61,7 @@ export class RechargeDetailsComponent implements OnInit {
     this.customAmount = '';
     this.amountChange.emit(amount);
     this.calculatePaymentAmount();
+    this.updateServiceData();
   }
 
   onCustomAmountChange() {
@@ -65,8 +70,10 @@ export class RechargeDetailsComponent implements OnInit {
       this.selectedAmount = amount;
       this.amountChange.emit(amount);
       this.calculatePaymentAmount();
-    }else {
+      this.updateServiceData();
+    } else {
       this.paymentAmount = 0;
+      this.updateServiceData();
     }
   }
 
@@ -79,6 +86,7 @@ export class RechargeDetailsComponent implements OnInit {
       this.paymentAmount = 0;
     }
     this.calculatePaymentAmount();
+    this.updateServiceData();
   }
 
   calculatePaymentAmount() {
@@ -91,5 +99,17 @@ export class RechargeDetailsComponent implements OnInit {
     } else {
       this.paymentAmount = 0;
     }
+    this.updateServiceData();
+  }
+
+  private updateServiceData() {
+    const currentData = this.rechargeDataService.getRechargeData();
+    this.rechargeDataService.setRechargeData({
+      ...currentData,
+      promotion: this.selectedPromotion ? this.selectedPromotion.name : '',
+      paymentAmount: this.paymentAmount,
+      amountReceived: this.selectedAmount
+    });
+    console.log(this.selectedPromotion, this.paymentAmount, this.paymentAmount);
   }
 }

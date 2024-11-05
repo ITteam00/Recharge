@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Router} from "@angular/router";
+import {RechargeDataService} from "../../Services/RechargeDataService";
 
 @Component({
   selector: 'app-submit-button',
@@ -14,15 +15,16 @@ export class SubmitButtonComponent {
   @Input() paymentAmount: number = 0;
   @Input() amountReceived: number = 0;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private rechargeDataService: RechargeDataService) {}
 
   onSubmit() {
+    const rechargeData = this.rechargeDataService.getRechargeData();
     this.router.navigate(['/confirmation'], {
       queryParams: {
-        phoneNumber: this.phoneNumber,
-        promotion: this.promotion,
-        paymentAmount: this.paymentAmount,
-        amountReceived: this.amountReceived
+        phoneNumber: rechargeData.phoneNumber,
+        promotion: rechargeData.promotion,
+        paymentAmount: rechargeData.paymentAmount,
+        amountReceived: rechargeData.amountReceived
       }
     });
   }
