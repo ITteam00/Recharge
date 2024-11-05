@@ -1,5 +1,9 @@
 <div class="steps">
-    <span class="step active" [class.active]="currentStep === 1" >1. Enter Number and Amount</span>
-    <span class="step" [class.active]="currentStep === 2">2. Confirm and Pay</span>
-    <span class="step" [class.active]="currentStep === 3" >3. Complete</span>
+  <span class="step" routerLink="/recharge" routerLinkActive="active"
+    >1. Enter Number and Amount</span
+  >
+  <span class="step" routerLink="/confirmation" routerLinkActive="active"
+    >2. Confirm and Pay</span
+  >
+  <span class="step" [class.active]="currentStep === 3">3. Complete</span>
 </div>

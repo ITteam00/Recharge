@@ -6,8 +6,9 @@ import { RechargeFormComponent } from './recharge-form/recharge-form.component';
 
 
 export const routes: Routes = [
-  { path: '', component: RechargeFormComponent},
-  { path: 'confirmation', component: ConfirmationComponent }
+  { path: 'recharge', component: RechargeFormComponent},
+  { path: 'confirmation', component: ConfirmationComponent },
+  { path: '**', redirectTo: 'recharge', pathMatch: 'full'}
 ];
 
 @NgModule({
