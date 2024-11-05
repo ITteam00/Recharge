@@ -21,6 +21,8 @@ export class PhoneInputComponent {
     const phoneRegex = /^\d{11}$/;
     this.isValid = phoneRegex.test(this.phoneNumber);
     this.validationService.setPhoneValid(this.isValid);
+    this.validationService.setPhoneNumber(this.phoneNumber);
+
 
   }
 }

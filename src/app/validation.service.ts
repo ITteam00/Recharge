@@ -5,12 +5,23 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ValidationService {
-
+  private phoneNumber = new BehaviorSubject<string>('');
+  private amount = new BehaviorSubject<number>(0);
   private phoneValid = new BehaviorSubject<boolean>(true);
   private amountValid = new BehaviorSubject<boolean>(true);
 
+  phoneNumber$ = this.phoneNumber.asObservable();
+  amount$ = this.amount.asObservable();
   phoneValid$ = this.phoneValid.asObservable();
   amountValid$ = this.amountValid.asObservable();
+
+  setPhoneNumber(phone: string) {
+    this.phoneNumber.next(phone);
+  }
+
+  setAmount(amount: number) {
+    this.amount.next(amount);
+  }
 
   setPhoneValid(isValid: boolean) {
     this.phoneValid.next(isValid);

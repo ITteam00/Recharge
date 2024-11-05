@@ -39,8 +39,8 @@ export class MoneyCalculateComponent {
       this.selectedAmount = amount;
       this.updateAmounts();
     } 
+    this.validationService.setAmount(this.selectedAmount);
     this.validateAmount();
-
   }
 
   updateAmounts() {
