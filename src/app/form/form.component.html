@@ -11,18 +11,18 @@
 </select>
 <span class="discount-tag" id="tag-9.95">Discount - Mobile Store Recharge 9.95% Discount</span>
 <span class="discount-tag" id="tag-10.00">Discount - Student Recharge 10.00% Discount</span>
-
+<br>
 <label>Recharge Amount(RMB):</label>
 <div class="amount-options">
-    <button type="button" class="amount-btn">30</button>
-    <button type="button" class="amount-btn">50</button>
-    <button type="button" class="amount-btn active">100</button>
-    <button type="button" class="amount-btn">300</button>
-    <button type="button" class="amount-btn">500</button>
-    <input type="text" size="10" class="amount-input" placeholder="10~3000" />
+    <button type="button" class="amount-btn" [ngClass]="{'active': rechargeAmount === 30}" (click)="setAmount(30)">30</button>
+    <button type="button" class="amount-btn" [ngClass]="{'active': rechargeAmount === 50}" (click)="setAmount(50)">50</button>
+    <button type="button" class="amount-btn active" [ngClass]="{'active': rechargeAmount === 100}" (click)="setAmount(100)">100</button>
+    <button type="button" class="amount-btn" [ngClass]="{'active': rechargeAmount === 300}" (click)="setAmount(300)">300</button>
+    <button type="button" class="amount-btn" [ngClass]="{'active': rechargeAmount === 500}" (click)="setAmount(500)">500</button>
+    <input type="text" size="10" class="amount-input" placeholder="10~3000" (input)="setCustomAmount($event)"/>
 </div>
 
 <div class="amount-summary">
-    <p>Payment Amount: <span class="payment-amount">99.50 RMB</span></p>
-    <p>Amount Received: <span class="received-amount">100.00 RMB</span></p>
+    <p>Payment Amount: <span class="payment-amount">{{ paymentAmount }} RMB</span></p>
+    <p>Amount Received: <span class="received-amount">{{ rechargeAmount }} RMB</span></p>
 </div>
