@@ -1,7 +1,8 @@
 import { NgIf } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { ValidationService } from '../validation.service';
+
 
 @Component({
   selector: 'app-phone-input',
@@ -14,8 +15,10 @@ import { ValidationService } from '../validation.service';
 export class PhoneInputComponent {
   phoneNumber: string = '';
   isValid: boolean = true;
+  form: FormGroup | undefined;
 
-  constructor(private validationService: ValidationService) {}
+  constructor(private validationService: ValidationService) {
+  }
 
   validatePhoneNumber() {
     const phoneRegex = /^\d{11}$/;
