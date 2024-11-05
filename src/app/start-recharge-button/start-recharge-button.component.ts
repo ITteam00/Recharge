@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './start-recharge-button.component.html',
-  styleUrl: './start-recharge-button.component.css'
+  styleUrl: '../app.component.css'
 })
 export class StartRechargeButtonComponent {
 
