@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ValidationService } from '../validation.service';
 import { combineLatest } from 'rxjs';
 import { Router } from '@angular/router';
+import { StepService } from '../step.service';
 
 @Component({
   selector: 'app-recharge-button',
@@ -11,11 +12,14 @@ import { Router } from '@angular/router';
   styleUrl: './recharge-button.component.css'
 })
 export class RechargeButtonComponent {
+  @Output() stepChange = new EventEmitter<number>();
   isFormValid: boolean = true;
   phoneNumber: string = '';
   amount: number = 0;
-
-  constructor(private validationService: ValidationService, private router: Router) {
+  updateStep(step: number) {
+    this.stepService.setStep(step);
+  }
+  constructor(private validationService: ValidationService, private stepService: StepService, private router: Router) {
     combineLatest([
       this.validationService.phoneValid$,
       this.validationService.amountValid$,
@@ -27,8 +31,9 @@ export class RechargeButtonComponent {
       this.amount = amount;
     });
   }
-  
+
   navigateToConfirmation() {
     this.router.navigate(['/confirmation'], { queryParams: { phone: this.phoneNumber, amount: this.amount } });
+    this.stepService.setStep(2); 
   }
 }

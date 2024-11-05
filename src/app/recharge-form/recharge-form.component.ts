@@ -4,6 +4,7 @@ import { MoneyCalculateComponent } from "../money-calculate/money-calculate.comp
 import { RechargeButtonComponent } from "../recharge-button/recharge-button.component";
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { StepService } from '../step.service';
 @Component({
   selector: 'app-recharge-form',
   standalone: true,
@@ -12,5 +13,9 @@ import { RouterModule } from '@angular/router';
   styleUrl: './recharge-form.component.css'
 })
 export class RechargeFormComponent {
+  constructor(private stepService: StepService) {}
 
+  updateStep(step: number) {
+    this.stepService.setStep(step);
+  }
 }
