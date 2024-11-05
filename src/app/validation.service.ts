@@ -7,8 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class ValidationService {
   private phoneNumber = new BehaviorSubject<string>('');
   private amount = new BehaviorSubject<number>(0);
-  private phoneValid = new BehaviorSubject<boolean>(true);
-  private amountValid = new BehaviorSubject<boolean>(true);
+  private phoneValid = new BehaviorSubject<boolean>(false);
+  private amountValid = new BehaviorSubject<boolean>(false);
 
   phoneNumber$ = this.phoneNumber.asObservable();
   amount$ = this.amount.asObservable();
