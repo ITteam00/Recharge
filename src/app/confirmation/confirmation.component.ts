@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation',
-  standalone: true,
-  imports: [],
   templateUrl: './confirmation.component.html',
-  styleUrl: './confirmation.component.css'
+  styleUrls: ['./confirmation.component.css']
 })
 export class ConfirmationComponent {
+  phoneNumber: string | null = '';
+  amount: number | null = 0;
 
+  constructor(private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.phoneNumber = params['phone'];
+      this.amount = params['amount'];
+    });
+  }
 }
