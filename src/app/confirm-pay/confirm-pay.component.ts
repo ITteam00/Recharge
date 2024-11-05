@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-confirm-pay',
@@ -8,9 +8,18 @@ import { Router } from '@angular/router';
   templateUrl: './confirm-pay.component.html',
   styleUrl: './confirm-pay.component.css'
 })
-export class ConfirmPayComponent {
+export class ConfirmPayComponent implements OnInit {
+  paymentAmount: number = 0;
+  rechargeAmount: number = 0;
 
-  constructor(private router: Router) {}
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.paymentAmount = +params['paymentAmount'];
+      this.rechargeAmount = +params['rechargeAmount'];
+    });
+  }
 
 
 }

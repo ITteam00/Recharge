@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-start-recharge-button',
@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: '../app.component.css'
 })
 export class StartRechargeButtonComponent {
+  @Output() startRecharge = new EventEmitter<void>();
+
+  onStartRecharge() {
+    this.startRecharge.emit();
+  }
 
 }
