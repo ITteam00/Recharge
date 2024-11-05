@@ -31,14 +31,8 @@ export class MoneyCalculateComponent {
 
   updateCustomAmount(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    const amount = parseFloat(inputElement.value);
-    if (inputElement.value === '') {
-      this.selectedAmount = 0;
-      this.updateAmounts();
-    } else if (!isNaN(amount) && amount >= 10 && amount <= 3000) {
-      this.selectedAmount = amount;
-      this.updateAmounts();
-    } 
+    this.selectedAmount  = parseFloat(inputElement.value);
+    this.updateAmounts();
     this.validationService.setAmount(this.selectedAmount);
     this.validateAmount();
   }
@@ -52,7 +46,7 @@ export class MoneyCalculateComponent {
   }
 
   validateAmount() {
-    const isValid = this.selectedAmount >= 10 && this.selectedAmount <= 3000;
-    this.validationService.setAmountValid(isValid);
+    this.isValid = this.selectedAmount >= 10 && this.selectedAmount <= 3000;
+    this.validationService.setAmountValid(this.isValid);
   }
 }
