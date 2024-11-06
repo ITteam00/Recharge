@@ -2,9 +2,7 @@
 
 <label for="discount">Promotion:</label>
 <select id="discount" [(ngModel)]="selectedType" (change)="onDiscountChange()">
-    <option>None</option>
-    <option>Discount - Mobile Store Recharge 9.0% Discount</option>
-    <option>Discount - Mobile Store Recharge 8.0% Discount</option>
+    <option *ngFor="let type of PromotionTypes" [value]="type">{{type}}</option>
 </select>
 <span class="discount-tag">{{selectedType}}</span>
 

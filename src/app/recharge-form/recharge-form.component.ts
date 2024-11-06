@@ -19,6 +19,9 @@ export class RechargeFormComponent {
       phone: ['', [Validators.required, Validators.pattern('^1[0-9]{10}$')]]
     });
   }
+  PromotionTypes=['None','Discount - Mobile Store Recharge 9.0% Discount','Discount - Mobile Store Recharge 8.0% Discount'];
+
+
   phoneNumber:string=""
   isValid:boolean=false
 
