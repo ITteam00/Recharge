@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {RechargeDataService} from "../../Services/RechargeDataService";
+import {RechargeData} from "../../Services/RechargeDataModel";
 
 interface Promotion {
   id: string;
@@ -36,6 +37,12 @@ export class RechargeDetailsComponent implements OnInit {
 
   selectedPromotionId: string = '';
   selectedPromotion: Promotion | null = null;
+  private rechargeData: RechargeData = {
+    phoneNumber: '',
+    promotion: '',
+    paymentAmount: 0,
+    amountReceived: 0
+  };
   constructor(private rechargeDataService: RechargeDataService) {}
 
   ngOnInit() {
@@ -82,7 +89,7 @@ export class RechargeDetailsComponent implements OnInit {
     if (isNaN(amount) || amount < 10 || amount > 3000 || !Number.isInteger(amount)) {
       alert('Please enter a valid amount between 10 and 3000. It must be an integer.');
       this.customAmount = '';
-      this.selectedAmount = null;
+      this.selectedAmount = 0;
       this.paymentAmount = 0;
     }
     this.calculatePaymentAmount();
@@ -103,13 +110,13 @@ export class RechargeDetailsComponent implements OnInit {
   }
 
   private updateServiceData() {
-    const currentData = this.rechargeDataService.getRechargeData();
-    this.rechargeDataService.setRechargeData({
-      ...currentData,
-      promotion: this.selectedPromotion ? this.selectedPromotion.name : '',
-      paymentAmount: this.paymentAmount,
-      amountReceived: this.selectedAmount
-    });
+    this.rechargeData = this.rechargeDataService.getRechargeData();
+    this.rechargeData.promotion = this.selectedPromotion ? this.selectedPromotion.name : '';
+    this.rechargeData.paymentAmount = this.paymentAmount;
+    if (this.selectedAmount != null) {
+      this.rechargeData.amountReceived = this.selectedAmount;
+    }
+    this.rechargeDataService.setRechargeData(this.rechargeData);
     console.log(this.selectedPromotion, this.paymentAmount, this.paymentAmount);
   }
 }

@@ -1,36 +1,33 @@
-// recharge-data.service.ts
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {RechargeData} from "./RechargeDataModel";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class RechargeDataService {
-  phoneNumber: string = '';
-  promotion: string = '';
-  paymentAmount: number = 0;
-  amountReceived: number = 0;
 
-/*  get data(): {
-    phoneNumber: this.phoneNumber,
-    promotion: this.promotion,
-    paymentAmount: this.paymentAmount,
-    amountReceived: this.amountReceived
-  }*/
+  rechargeData: RechargeData={
+    phoneNumber: '',
+    promotion: '',
+    paymentAmount: 0,
+    amountReceived: 0
+  }
 
-  setRechargeData(data: any) {
+  public setRechargeData(data: RechargeData) {
     console.log('Setting data in service:', data);
-    this.phoneNumber = data.phoneNumber;
-    this.promotion = data.promotion;
-    this.paymentAmount = data.paymentAmount;
-    this.amountReceived = data.amountReceived;
+    this.rechargeData.phoneNumber = data.phoneNumber;
+    this.rechargeData.promotion = data.promotion;
+    this.rechargeData.paymentAmount= data.paymentAmount;
+    this.rechargeData.amountReceived = data.amountReceived;
   }
 
   getRechargeData() {
-    const data={
-      phoneNumber: this.phoneNumber,
-      promotion: this.promotion,
-      paymentAmount: this.paymentAmount,
-      amountReceived: this.amountReceived
+    const data = {
+      phoneNumber: this.rechargeData.phoneNumber,
+      promotion: this.rechargeData.promotion,
+      paymentAmount: this.rechargeData.paymentAmount,
+      amountReceived: this.rechargeData.amountReceived
     };
     console.log(data);
     return data;
