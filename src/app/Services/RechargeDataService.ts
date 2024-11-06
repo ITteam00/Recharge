@@ -10,6 +10,13 @@ export class RechargeDataService {
   paymentAmount: number = 0;
   amountReceived: number = 0;
 
+/*  get data(): {
+    phoneNumber: this.phoneNumber,
+    promotion: this.promotion,
+    paymentAmount: this.paymentAmount,
+    amountReceived: this.amountReceived
+  }*/
+
   setRechargeData(data: any) {
     console.log('Setting data in service:', data);
     this.phoneNumber = data.phoneNumber;
