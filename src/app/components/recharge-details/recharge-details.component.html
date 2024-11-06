@@ -1,0 +1,35 @@
+<div class="app-recharge-details">
+  <label for="discount">Promotion:</label>
+  <select id="discount" [(ngModel)]="selectedPromotionId" (change)="onPromotionChange()">
+    <option value="">No Promotion</option>
+    <option *ngFor="let promo of promotions" [value]="promo.id">
+      {{ promo.name }}
+    </option>
+  </select>
+  <span *ngIf="selectedPromotion" class="discount-tag" display=flex>
+          Discount - {{ selectedPromotion.name }}
+  </span>
+  <div class="recharge-amount-section">
+    <label>Recharge Amount(RMB):</label>
+    <div class="amount-options">
+      <button *ngFor="let amount of predefinedAmounts"
+              type="button"
+              class="amount-btn"
+              [class.active]="selectedAmount === amount"
+              (click)="selectAmount(amount)">
+        {{ amount }}
+      </button>
+      <input type="text"
+             size="10"
+             class="amount-input"
+             placeholder="10~3000"
+             [(ngModel)]="customAmount"
+             (ngModelChange)="onCustomAmountChange()"
+             (blur)="validateCustomAmount()"/>
+    </div>
+  </div>
+  <div class="amount-summary">
+    <p>Payment Amount: <span class="payment-amount">{{ paymentAmount.toFixed(2) }} RMB</span></p>
+    <p>Amount Received: <span class="received-amount">{{ selectedAmount?.toFixed(2) || '0.00' }} RMB</span></p>
+  </div>
+</div>
