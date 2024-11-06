@@ -1,7 +1,4 @@
 <app-phone-input (phoneNumberChange)="onHandlerPhoneNumberChange($event)"></app-phone-input>
-<div>{{phoneNumber}}
-  {{isValid}}
-</div>
 
 <label for="discount">Promotion:</label>
 <select id="discount" [(ngModel)]="selectedType" (change)="onDiscountChange()">
