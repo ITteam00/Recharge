@@ -11,9 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class PhoneInputComponent {
   phoneForm: FormGroup;
-  @Output() phoneNumberChange = new EventEmitter<string>();
-
-
+  @Output() phoneNumberChange = new EventEmitter<[string,boolean]>();
 
   constructor(private fb: FormBuilder) {
     this.phoneForm = this.fb.group({
@@ -21,11 +19,9 @@ export class PhoneInputComponent {
     });
   }
 
-  onSubmit() {
-    if (this.phoneForm.valid) {
+  onPhoneNumberChange() {
       console.log(this.phoneForm.value);
-      this.phoneNumberChange.emit(this.phoneForm.value)
-    }
+      this.phoneNumberChange.emit([this.phoneForm.value.phone,this.phoneForm.valid])
   }
 
   get phone() {

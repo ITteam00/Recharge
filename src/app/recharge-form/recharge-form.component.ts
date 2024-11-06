@@ -19,37 +19,29 @@ export class RechargeFormComponent {
       phone: ['', [Validators.required, Validators.pattern('^1[0-9]{10}$')]]
     });
   }
-  
   phoneNumber:string=""
+  isValid:boolean=false
+
+  onHandlerPhoneNumberChange($event:[string,boolean]){
+    this.phoneNumber=$event[0]
+    this.isValid=$event[1]
+  }
+  
   payment:number=0
   amount:number=0
   navigateConfirmAndPay(){
     this.router.navigate(['/confirm-pay'],{queryParams: {
+      phoneNumber:this.phoneNumber,
       amount: this.amountReceived,
       paymentAmount: this.paymentAmount}
     })
   }
-
-
-  onSubmit() {
-    if (this.phoneForm.valid) {
-      console.log(this.phoneForm.value);
-    }
-  }
-
-  get phone() {
-    return this.phoneForm.get('phone');
-  }  
-
-
 
   selectedType = "None";
   discount: number = 0
   paymentAmount: number | null = null
   amountReceived: number | null = null
   inputValue: number | null = null
-
-
 
   public updateDiscount() {
     if (this.selectedType === "Discount - Mobile Store Recharge 9.0% Discount") {
@@ -62,7 +54,6 @@ export class RechargeFormComponent {
       this.discount = 0
     }
   }
-
 
   onDiscountChange() {
     this.updateDiscount();

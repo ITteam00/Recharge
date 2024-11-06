@@ -11,12 +11,13 @@ import { ActivatedRoute, } from '@angular/router';
 export class ConfirmPayComponent implements OnInit{
   amount: number | null = null;
   payment: number | null = null;
-  phoneNumber:string=''
+  phone=""
  
   constructor(private route: ActivatedRoute) {}
  
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
+      this.phone=params['phoneNumber']
       this.amount = params['amount'];
       this.payment = params['paymentAmount'];
     });
