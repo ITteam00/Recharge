@@ -1,0 +1,27 @@
+<app-phone-input (phoneNumberChange)="onHandlerPhoneNumberChange($event)"></app-phone-input>
+
+<label for="discount">Promotion:</label>
+<select id="discount" [(ngModel)]="selectedType" (change)="onDiscountChange()">
+    <option *ngFor="let type of PromotionTypes" [value]="type">{{type}}</option>
+</select>
+<span class="discount-tag">{{selectedType}}</span>
+
+<div>
+    <label>Recharge Amount(RMB):</label>
+</div>
+<div class="amount-options">
+    <button type="button" class="amount-btn" (click)="setAmount(30)" >30</button>
+    <button type="button" class="amount-btn" (click)="setAmount(50)">50</button>
+    <button type="button" class="amount-btn" (click)="setAmount(100)">100</button>
+    <button type="button" class="amount-btn" (click)="setAmount(300)">300</button>
+    <button type="button" class="amount-btn" (click)="setAmount(500)">500</button>
+    <input type="text" size="10" class="amount-input" placeholder="10-3000" [(ngModel)]="inputValue" (focus)="clearValue()" (blur)="checkValue()"/>
+</div>
+
+<div class="amount-summary">
+    <p>Payment Amount: <span class="payment-amount">{{paymentAmount}} RMB</span></p>
+    <p>Amount Received: <span class="received-amount">{{amountReceived}} RMB</span></p>
+</div>
+
+
+<button type="submit" class="submit-btn" (click)="navigateConfirmAndPay()" [disabled]="!isValid" [ngClass]="{'invalid': !isValid, 'valid': isValid}">Start Recharge</button>
