@@ -27,6 +27,9 @@ export class MoneyCalculateComponent {
   selectAmount(amount: number) {
     this.selectedAmount = amount;
     this.updateAmounts();
+    this.validationService.setAmount(this.selectedAmount);
+    this.validationService.setAmountValid(true);
+
   }
 
   updateCustomAmount(event: Event) {
