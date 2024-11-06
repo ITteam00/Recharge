@@ -27,8 +27,8 @@ export class MoneyCalculateComponent {
   selectAmount(amount: number) {
     this.selectedAmount = amount;
     this.updateAmounts();
-    this.validationService.setAmount(this.selectedAmount);
-    this.validationService.setAmountValid(true);
+    this.validationService.setAmount(this.paymentAmount);
+    this.validateAmount();
 
   }
 
@@ -36,7 +36,7 @@ export class MoneyCalculateComponent {
     const inputElement = event.target as HTMLInputElement;
     this.selectedAmount  = parseFloat(inputElement.value);
     this.updateAmounts();
-    this.validationService.setAmount(this.selectedAmount);
+    this.validationService.setAmount(this.paymentAmount);
     this.validateAmount();
   }
 
