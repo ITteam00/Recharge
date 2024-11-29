@@ -1,0 +1,27 @@
+<label for="discount">Promotion:</label>
+<select id="discount" (change)="updateDiscount($event)">
+    <option value="0">No Discount</option>
+    <option value="9.95">Mobile Store Recharge 9.95% Discount</option>
+</select>
+
+<span class="discount-tag">Discount - 
+    <span id="discount-description">{{ discountRate === 0 ? 'No Discount' : 'Mobile Store Recharge 9.95% Discount' }}
+    </span>
+</span>
+
+<label>Recharge Amount(RMB):</label>
+<div class="amount-options">
+    <button type="button" class="amount-btn" [class.active]="isActive(30)" (click)="selectAmount(30)">30</button>
+    <button type="button" class="amount-btn" [class.active]="isActive(50)" (click)="selectAmount(50)">50</button>
+    <button type="button" class="amount-btn" [class.active]="isActive(100)" (click)="selectAmount(100)">100</button>
+    <button type="button" class="amount-btn" [class.active]="isActive(300)" (click)="selectAmount(300)">300</button>
+    <button type="button" class="amount-btn" [class.active]="isActive(500)" (click)="selectAmount(500)">500</button>
+    <input type="number" size="10" class="amount-input" placeholder="10~3000" (input)="updateCustomAmount($event)" />
+    <div *ngIf ="!isValid" style="color: red;">!!!</div>
+
+</div>
+
+<div class="amount-summary">
+    <p>Payment Amount: <span class="payment-amount">{{ paymentAmount.toFixed(2) }} RMB</span></p>
+    <p>Amount Received: <span class="received-amount">{{ receivedAmount.toFixed(2) }} RMB</span></p>
+  </div>
